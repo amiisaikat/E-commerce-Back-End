@@ -3,7 +3,7 @@ from flask import request, json
 from flask_jwt_extended import create_access_token
 
 
-@app.route('/user/signup')
+@app.route('/user/signup', methods = "POST")
 def user_signup():
     data = request.get_json(force=True)
     user = users.find_one({'email': data['email']})
