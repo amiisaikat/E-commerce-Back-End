@@ -1,6 +1,5 @@
 from flask import Flask, json
 from pymongo import MongoClient
-from werkzeug.security import safe_str_cmp
 from werkzeug.exceptions import HTTPException, BadRequest, InternalServerError, NotFound
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import (
@@ -24,6 +23,30 @@ def handle_exception(e):
 
 
 @app.errorhandler(NotFound)
+def handle_exception(e):
+    response = e.get_response()
+    response.data = json.dumps({
+        "code": e.code,
+        "name": e.name,
+        "description": e.description
+    })
+    response.content_type = "application/json"
+    return response
+
+
+@app.errorhandler(BadRequest)
+def handle_exception(e):
+    response = e.get_response()
+    response.data = json.dumps({
+        "code": e.code,
+        "name": e.name,
+        "description": e.description
+    })
+    response.content_type = "application/json"
+    return response
+
+
+@app.errorhandler(HTTPException)
 def handle_exception(e):
     response = e.get_response()
     response.data = json.dumps({
