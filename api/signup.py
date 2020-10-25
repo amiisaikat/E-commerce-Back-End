@@ -1,5 +1,4 @@
 from flask import request, json
-from flask_jwt_extended import create_access_token
 
 from api import app, users, bcrypt
 
