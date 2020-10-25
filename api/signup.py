@@ -10,15 +10,15 @@ def user_signup():
     if user is None:
         hashed_pw = bcrypt.generate_password_hash(data["password"]).decode("UTF-8")
         user = {
-                "email": data["email"],
-                "password": hashed_pw,
-                "username": data['username'],
-                "contact": data['contact']
-                }
+            "email": data["email"],
+            "password": hashed_pw,
+            "username": data['username'],
+            "contact": data['contact']
+        }
         users.insert_one(user)
         response = json.jsonify({
-                "result": "ok",
-            })
+            "result": "ok",
+        })
 
         return response, 201
     else:
