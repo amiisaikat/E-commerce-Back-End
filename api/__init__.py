@@ -8,6 +8,7 @@ from flask_jwt_extended import (
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "super-secret"
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 2592000
 
 
 @app.errorhandler(InternalServerError)
@@ -69,3 +70,5 @@ jwt = JWTManager(app)
 
 from api import login
 from api import signup
+from api import post_product
+from api import update_product
