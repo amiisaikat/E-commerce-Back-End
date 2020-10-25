@@ -8,7 +8,6 @@ from flask_jwt_extended import (
 )
 
 app = Flask(__name__)
-app.config["JWT_SECRET_KEY"] = "Thisissecretkeydontstealit!"
 
 
 @app.errorhandler(InternalServerError)
