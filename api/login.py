@@ -24,6 +24,6 @@ def user_login():
             })
             return response, 200
         response = json.jsonify({
-            "result": "wrong_pass"
+            "result": "wrong_pass!"
         })
         return response
